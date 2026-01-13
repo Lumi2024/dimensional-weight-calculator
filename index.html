@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dimensional Weight Calculator (FedEx, DHL, UPS)</title>
+
+  <meta name="description"
+        content="Free dimensional weight calculator for FedEx, DHL and UPS. Calculate volumetric weight instantly.">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<h1>Dimensional Weight Calculator</h1>
+
+<p>
+Calculate dimensional (volumetric) weight for FedEx, DHL and UPS shipments.
+</p>
+
+<label>Length (cm)</label><br>
+<input id="l" type="number"><br><br>
+
+<label>Width (cm)</label><br>
+<input id="w" type="number"><br><br>
+
+<label>Height (cm)</label><br>
+<input id="h" type="number"><br><br>
+
+<button onclick="calculate()">Calculate</button>
+
+<h2 id="result"></h2>
+
+<hr>
+
+<h3>Download printable dimensional weight tables</h3>
+<p>
+Save time with ready-to-use PDF tables for FedEx, DHL and UPS.
+</p>
+
+<a href="https://ko-fi.com/s/XXXXX" target="_blank">
+👉 Download the PDF (1 €)
+</a>
+
+<script>
+function calculate() {
+  const l = document.getElementById('l').value;
+  const w = document.getElementById('w').value;
+  const h = document.getElementById('h').value;
+
+  const volume = l * w * h;
+
+  const fedex = volume / 5000;
+  const dhl = volume / 5000;
+  const ups = volume / 5000;
+
+  document.getElementById('result').innerHTML =
+    `FedEx: ${fedex.toFixed(2)} kg<br>
+     DHL: ${dhl.toFixed(2)} kg<br>
+     UPS: ${ups.toFixed(2)} kg`;
+}
+</script>
+
+</body>
+</html>
