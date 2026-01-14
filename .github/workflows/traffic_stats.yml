@@ -1,21 +1,20 @@
 name: GitHub Traffic Stats
 on:
   schedule:
-    - cron: '0 0 * * *' # S'exécute chaque nuit à minuit
-  workflow_dispatch: # Permet de cliquer sur "Run workflow" pour tester
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 jobs:
   update-stats:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4 # Version plus récente
+        uses: actions/checkout@v4
 
-      - name: repository-stats
-        uses: sangonzal/repository-stats@v1.1.2
+      - name: Update repository stats
+        uses: enriikke/repository-stats@v1.2.2
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           repository: ${{ github.repository }}
-          # Les données seront sauvegardées dans un dossier nommé 'stats'
-          # sur une branche appelée 'gh-pages' ou 'traffic'
-          branch: traffic
+          # Les données seront stockées dans une branche dédiée
+          data-branch: traffic
