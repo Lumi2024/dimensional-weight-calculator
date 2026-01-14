@@ -5,16 +5,31 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-stats:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Update repository stats
-        uses: enriikke/repository-stats@v1.2.2
+      - name: Fetch Traffic Data
+        env:
+          TOKEN: ${{ secrets.METRICS_TOKEN }}
+        run: |
+          # Création d'un dossier pour les stats
+          mkdir -p traffic-data
+          
+          # Récupération des vues via l'API GitHub
+          curl -H "Authorization: token $TOKEN" \
+               https://api.github.com/repos/${{ github.repository }}/traffic/views \
+               > traffic-data/views.json
+          
+          # Récupération des visiteurs uniques
+          curl -H "Authorization: token $TOKEN" \
+               https://api.github.com/repos/${{ github.repository }}/traffic/clones \
+               > traffic-data/clones.json
+
+      - name: Archive Stats
+        uses: actions/upload-artifact@v4
         with:
-          token: ${{ secrets.METRICS_TOKEN }}
-          repository: ${{ github.repository }}
-          # Les données seront stockées dans une branche dédiée
-          data-branch: traffic
+          name: traffic-stats
+          path: traffic-data/
