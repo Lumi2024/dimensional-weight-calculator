@@ -1,0 +1,20 @@
+name: GitHub Traffic Stats
+on:
+  schedule:
+    - cron: '0 0 * * *' # S'exécute tous les jours à minuit
+  workflow_dispatch: # Permet de le lancer manuellement
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: GitHub Traffic Stats
+        uses: jstrieb/github-stats@master
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          repository: ${{ github.repository }}
+          # Les données seront stockées dans une branche nommée 'traffic'
+          branch: traffic
