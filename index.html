@@ -2,9 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Dimensional Weight Calculator 2026 (FedEx, DHL, UPS)</title>
-  <meta name="description" content="Instant dimensional weight calculator for FedEx, DHL and UPS. Calculate volumetric weight in seconds using official carrier formulas.">
+  <title>Dimensional Weight Calculator 2026 | FedEx, DHL, UPS</title>
+  <meta name="description" content="Free online dimensional weight calculator for FedEx, DHL, and UPS. Instantly calculate volumetric weight for shipping, Amazon FBA, and e-commerce parcels.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO / Rich snippet -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Dimensional Weight Calculator 2026",
+    "operatingSystem": "Web",
+    "applicationCategory": "BusinessApplication",
+    "url": "https://lumi2024.github.io/dimensional-weight-calculator/",
+    "description": "Calculate dimensional (volumetric) weight instantly for FedEx, DHL, UPS, and e-commerce parcels.",
+    "softwareVersion": "1.0",
+    "offers": {
+      "@type": "Offer",
+      "price": "1",
+      "priceCurrency": "EUR",
+      "url": "https://ko-fi.com/s/7825599b6d"
+    }
+  }
+  </script>
 
   <!-- Minimal styling -->
   <style>
@@ -15,9 +35,15 @@
       padding: 0 16px;
       line-height: 1.6;
       color: #222;
+      background-color: #fdfdfd;
     }
     h1, h2 {
       line-height: 1.3;
+    }
+    img.logo {
+      max-width: 120px;
+      display: block;
+      margin-bottom: 16px;
     }
     .calculator {
       border: 1px solid #ddd;
@@ -39,10 +65,18 @@
     }
     button {
       margin-top: 16px;
-      padding: 10px;
+      padding: 12px;
       font-size: 16px;
       width: 100%;
       cursor: pointer;
+      background-color: #0077cc;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #005fa3;
     }
     .result {
       margin-top: 16px;
@@ -50,26 +84,48 @@
       font-weight: bold;
     }
     .pdf-box {
-      margin: 32px 0;
+      margin: 24px 0;
       padding: 20px;
-      border: 1px dashed #999;
+      border: 2px dashed #ff9900;
       border-radius: 6px;
-      background: #fff;
+      background: #fffbe6;
+      text-align: center;
+      display: none; /* hidden until calculation */
+    }
+    .pdf-box a {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 12px 20px;
+      background-color: #ff9900;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+    .pdf-box a:hover {
+      background-color: #cc7a00;
     }
     footer {
       margin-top: 40px;
       font-size: 14px;
       color: #666;
+      text-align: center;
+    }
+    ul.keywords {
+      list-style: disc;
+      margin-left: 20px;
     }
   </style>
 </head>
 
 <body>
 
+<img src="logo.png" alt="Dimensional Weight Calculator Logo" class="logo">
+
 <h1>Dimensional Weight Calculator 2026</h1>
 <p>
-Calculate dimensional (volumetric) weight instantly for
-<strong>FedEx, DHL and UPS</strong>.
+Free and fast <strong>dimensional weight calculator</strong> for FedEx, DHL, UPS, Amazon FBA, and e-commerce shipping. Enter package dimensions and get volumetric weight instantly.
 </p>
 
 <div class="calculator">
@@ -95,47 +151,36 @@ Calculate dimensional (volumetric) weight instantly for
 
 <h2>What is dimensional weight?</h2>
 <p>
-Dimensional weight (also called volumetric weight) is used by shipping carriers
-to price packages based on their size rather than their actual weight.
-Large but lightweight parcels may be charged based on volume.
+Dimensional weight (also called volumetric weight) is used by shipping carriers to price parcels based on volume instead of actual weight. Large but lightweight packages may be charged based on size.
 </p>
 
 <h2>How is dimensional weight calculated?</h2>
 <p>
-The formula is:
-</p>
-<p>
 <strong>Length × Width × Height ÷ carrier divisor</strong>
 </p>
-<p>
-Most carriers use a divisor of <strong>5000</strong> or <strong>6000</strong>,
-depending on the service and destination.
-</p>
+<p>Divisors vary by carrier: <strong>5000</strong> for FedEx/DHL, <strong>6000</strong> for UPS.</p>
 
-<h2>Which carriers use dimensional weight?</h2>
-<ul>
+<h2>Carriers using dimensional weight</h2>
+<ul class="keywords">
   <li>FedEx</li>
   <li>DHL</li>
   <li>UPS</li>
+  <li>Amazon FBA</li>
+  <li>E-commerce shipping</li>
 </ul>
 
-<div class="pdf-box">
+<div class="pdf-box" id="pdfBox">
   <p>
-  If you ship packages daily, you may prefer ready-to-use dimensional weight tables
-  instead of recalculating each time.
+  Ship smarter! Download ready-to-use dimensional weight tables (PDF) instead of recalculating each time.
   </p>
-
-  <p>
-  👉 <a href="https://ko-fi.com/s/7825599b6d" target="_blank">
-  Download printable dimensional weight tables (PDF – 1 €)
+  <a href="https://ko-fi.com/s/7825599b6d" target="_blank">
+    Download PDF Tables (1 €)
   </a>
-  </p>
 </div>
 
 <footer>
   <p>
-  This calculator is provided for reference only.
-  Always verify official carrier pricing rules.
+  This calculator is for reference only. Always check official carrier pricing rules.
   </p>
 </footer>
 
@@ -148,12 +193,16 @@ function calculate() {
 
   if (!l || !w || !h) {
     document.getElementById('result').innerText = "Please enter all dimensions.";
+    document.getElementById('pdfBox').style.display = "none";
     return;
   }
 
   const dimWeight = (l * w * h) / divisor;
   document.getElementById('result').innerText =
     "Dimensional weight: " + dimWeight.toFixed(2) + " kg";
+
+  // Show the PDF CTA after calculation
+  document.getElementById('pdfBox').style.display = "block";
 }
 </script>
 
