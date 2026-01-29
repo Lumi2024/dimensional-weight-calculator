@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Dimensional Weight Calculator 2026 | FedEx, DHL, UPS</title>
-  <meta name="description" content="Free online dimensional weight calculator for FedEx, DHL, and UPS. Instantly calculate volumetric weight for shipping, Amazon FBA, and e-commerce parcels.">
+  <meta name="description" content="Free online dimensional weight calculator for FedEx, DHL, UPS, and Amazon FBA. Instantly calculate volumetric weight for e-commerce parcels.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- SEO / Rich snippet -->
+
+  <!-- Rich snippet: SoftwareApplication + FAQ -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -15,7 +15,7 @@
     "operatingSystem": "Web",
     "applicationCategory": "BusinessApplication",
     "url": "https://lumi2024.github.io/dimensional-weight-calculator/",
-    "description": "Calculate dimensional (volumetric) weight instantly for FedEx, DHL, UPS, and e-commerce parcels.",
+    "description": "Calculate dimensional (volumetric) weight instantly for FedEx, DHL, UPS, Amazon FBA, and e-commerce parcels.",
     "softwareVersion": "1.0",
     "offers": {
       "@type": "Offer",
@@ -26,11 +26,44 @@
   }
   </script>
 
-  <!-- Minimal styling -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is dimensional weight?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dimensional weight is used by carriers to price parcels based on volume rather than actual weight. Large lightweight packages may be charged based on size."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is dimensional weight calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dimensional weight = Length × Width × Height ÷ carrier divisor (5000 for FedEx/DHL, 6000 for UPS)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which carriers use dimensional weight?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "FedEx, DHL, UPS, and Amazon FBA often use dimensional weight pricing for large parcels."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Styling -->
   <style>
     body {
       font-family: Arial, sans-serif;
-      max-width: 760px;
+      max-width: 800px;
       margin: 40px auto;
       padding: 0 16px;
       line-height: 1.6;
@@ -49,8 +82,9 @@
       border: 1px solid #ddd;
       padding: 20px;
       margin: 24px 0;
-      border-radius: 6px;
+      border-radius: 8px;
       background: #fafafa;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
     label {
       display: block;
@@ -59,13 +93,15 @@
     }
     input, select {
       width: 100%;
-      padding: 8px;
+      padding: 10px;
       margin-top: 4px;
       font-size: 16px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
     }
     button {
       margin-top: 16px;
-      padding: 12px;
+      padding: 14px;
       font-size: 16px;
       width: 100%;
       cursor: pointer;
@@ -90,7 +126,7 @@
       border-radius: 6px;
       background: #fffbe6;
       text-align: center;
-      display: none; /* hidden until calculation */
+      display: none;
     }
     .pdf-box a {
       display: inline-block;
@@ -112,9 +148,31 @@
       color: #666;
       text-align: center;
     }
-    ul.keywords {
-      list-style: disc;
-      margin-left: 20px;
+    .faq {
+      margin-top: 32px;
+      background: #f9f9f9;
+      padding: 16px;
+      border-radius: 6px;
+      border: 1px solid #eee;
+    }
+    .faq h3 {
+      margin-top: 12px;
+      font-size: 16px;
+      color: #0077cc;
+    }
+    .faq p {
+      margin: 6px 0 12px 0;
+      font-size: 15px;
+    }
+    .share {
+      margin: 24px 0;
+      text-align: center;
+    }
+    .share button {
+      width: auto;
+      margin: 4px;
+      padding: 10px 16px;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -125,7 +183,7 @@
 
 <h1>Dimensional Weight Calculator 2026</h1>
 <p>
-Free and fast <strong>dimensional weight calculator</strong> for FedEx, DHL, UPS, Amazon FBA, and e-commerce shipping. Enter package dimensions and get volumetric weight instantly.
+Free and fast <strong>dimensional weight calculator</strong> for FedEx, DHL, UPS, Amazon FBA, and e-commerce parcels. Enter package dimensions below and get volumetric weight instantly.
 </p>
 
 <div class="calculator">
@@ -149,39 +207,34 @@ Free and fast <strong>dimensional weight calculator</strong> for FedEx, DHL, UPS
   <div class="result" id="result"></div>
 </div>
 
-<h2>What is dimensional weight?</h2>
-<p>
-Dimensional weight (also called volumetric weight) is used by shipping carriers to price parcels based on volume instead of actual weight. Large but lightweight packages may be charged based on size.
-</p>
-
-<h2>How is dimensional weight calculated?</h2>
-<p>
-<strong>Length × Width × Height ÷ carrier divisor</strong>
-</p>
-<p>Divisors vary by carrier: <strong>5000</strong> for FedEx/DHL, <strong>6000</strong> for UPS.</p>
-
-<h2>Carriers using dimensional weight</h2>
-<ul class="keywords">
-  <li>FedEx</li>
-  <li>DHL</li>
-  <li>UPS</li>
-  <li>Amazon FBA</li>
-  <li>E-commerce shipping</li>
-</ul>
-
 <div class="pdf-box" id="pdfBox">
   <p>
   Ship smarter! Download ready-to-use dimensional weight tables (PDF) instead of recalculating each time.
   </p>
-  <a href="https://ko-fi.com/s/7825599b6d" target="_blank">
-    Download PDF Tables (1 €)
-  </a>
+  <a href="https://ko-fi.com/s/7825599b6d" target="_blank">Download PDF Tables (1 €)</a>
+</div>
+
+<div class="faq">
+  <h2>FAQ / Tips</h2>
+  <h3>What is dimensional weight?</h3>
+  <p>Dimensional weight is used by carriers to price parcels based on volume rather than actual weight. Large lightweight packages may be charged based on size.</p>
+
+  <h3>How is dimensional weight calculated?</h3>
+  <p>Length × Width × Height ÷ carrier divisor (5000 for FedEx/DHL, 6000 for UPS).</p>
+
+  <h3>Which carriers use dimensional weight?</h3>
+  <p>FedEx, DHL, UPS, and Amazon FBA often use dimensional weight pricing for large parcels.</p>
+</div>
+
+<div class="share">
+  <p>Share this tool:</p>
+  <button onclick="window.open('https://twitter.com/intent/tweet?text=Try%20this%20Dimensional%20Weight%20Calculator%202026!&url=https://lumi2024.github.io/dimensional-weight-calculator/','_blank')">Twitter</button>
+  <button onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://lumi2024.github.io/dimensional-weight-calculator/','_blank')">Facebook</button>
+  <button onclick="navigator.clipboard.writeText('https://lumi2024.github.io/dimensional-weight-calculator/'); alert('Link copied!');">Copy Link</button>
 </div>
 
 <footer>
-  <p>
-  This calculator is for reference only. Always check official carrier pricing rules.
-  </p>
+  <p>This calculator is for reference only. Always check official carrier pricing rules.</p>
 </footer>
 
 <script>
@@ -198,10 +251,8 @@ function calculate() {
   }
 
   const dimWeight = (l * w * h) / divisor;
-  document.getElementById('result').innerText =
-    "Dimensional weight: " + dimWeight.toFixed(2) + " kg";
+  document.getElementById('result').innerText = "Dimensional weight: " + dimWeight.toFixed(2) + " kg";
 
-  // Show the PDF CTA after calculation
   document.getElementById('pdfBox').style.display = "block";
 }
 </script>
