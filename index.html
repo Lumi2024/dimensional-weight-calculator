@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <meta charset="UTF-8">
   <title>Dimensional Weight Calculator 2026 | FedEx, DHL, UPS</title>
   <meta name="description" content="Free online dimensional weight calculator for FedEx, DHL, UPS, and Amazon FBA. Instantly calculate volumetric weight for e-commerce parcels.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 
   <!-- Rich snippet: SoftwareApplication + FAQ -->
   <script type="application/ld+json">
@@ -127,7 +129,7 @@
       border-radius: 6px;
       background: #fffbe6;
       text-align: center;
-      display: none;
+      display: block; /* toujours visible */
     }
     .pdf-box a {
       display: inline-block;
@@ -208,7 +210,8 @@ Free and fast <strong>dimensional weight calculator</strong> for FedEx, DHL, UPS
   <div class="result" id="result"></div>
 </div>
 
-<div class="pdf-box" id="pdfBox">
+<!-- PDF CTA visible tout le temps -->
+<div class="pdf-box">
   <p>
   Ship smarter! Download ready-to-use dimensional weight tables (PDF) instead of recalculating each time.
   </p>
@@ -247,14 +250,11 @@ function calculate() {
 
   if (!l || !w || !h) {
     document.getElementById('result').innerText = "Please enter all dimensions.";
-    document.getElementById('pdfBox').style.display = "none";
     return;
   }
 
   const dimWeight = (l * w * h) / divisor;
   document.getElementById('result').innerText = "Dimensional weight: " + dimWeight.toFixed(2) + " kg";
-
-  document.getElementById('pdfBox').style.display = "block";
 }
 </script>
 
