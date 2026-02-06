@@ -2,15 +2,68 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Shipping Cost Estimator</title>
+<title>Shipping Cost Estimator | Calculate Your Shipping Fees</title>
+<meta name="description" content="Free Shipping Cost Estimator. Quickly calculate shipping fees based on base cost, weight, and per kg rate. Perfect for e-commerce and logistics.">
+<meta name="keywords" content="shipping cost calculator, shipping estimator, freight cost, shipping fee calculator, logistics, e-commerce">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="../favicon.png">
+
 <style>
-body{margin:0;font-family:Inter,Arial;background:linear-gradient(135deg,#141e30,#243b55);color:white;padding:60px 20px;text-align:center;}
-.card{background:rgba(255,255,255,0.08);padding:40px;border-radius:20px;max-width:450px;margin:auto;}
-input,button{width:100%;padding:12px;margin:12px 0;border-radius:10px;border:none;}
-button{background:#00c6ff;color:black;font-weight:bold;}
-.result{margin-top:20px;font-size:20px;font-weight:bold;}
+body{
+  margin:0;
+  font-family:Inter,Arial;
+  background:linear-gradient(135deg,#141e30,#243b55);
+  color:white;
+  padding:60px 20px;
+  text-align:center;
+  line-height:1.6;
+}
+h1{
+  font-size:38px;
+  margin-bottom:20px;
+}
+.card{
+  background:rgba(255,255,255,0.08);
+  padding:40px;
+  border-radius:20px;
+  max-width:450px;
+  margin:auto;
+}
+input,button{
+  width:100%;
+  padding:12px;
+  margin:12px 0;
+  border-radius:10px;
+  border:none;
+  font-size:16px;
+}
+button{
+  background:#00c6ff;
+  color:black;
+  font-weight:bold;
+  cursor:pointer;
+}
+.result{
+  margin-top:20px;
+  font-size:20px;
+  font-weight:bold;
+}
+.content{
+  max-width:900px;
+  margin:60px auto;
+  text-align:left;
+  opacity:0.9;
+}
+#seo-content h2, #seo-content h3 {
+  margin-top:30px;
+}
+#seo-content ul {
+  margin-left:20px;
+}
+.cta{
+  text-align:center;
+  margin-top:40px;
+}
 </style>
 </head>
 <body>
@@ -18,28 +71,59 @@ button{background:#00c6ff;color:black;font-weight:bold;}
 <h1>Shipping Cost Estimator</h1>
 
 <div class="card">
-<input type="number" id="base" placeholder="Base Cost ($)">
-<input type="number" id="weight" placeholder="Weight (kg)">
-<input type="number" id="rate" placeholder="Rate per kg ($)">
-<button onclick="calc()">Estimate Cost</button>
-<div class="result" id="result"></div>
+  <input type="number" id="base" placeholder="Base Cost ($)">
+  <input type="number" id="weight" placeholder="Weight (kg)">
+  <input type="number" id="rate" placeholder="Rate per kg ($)">
+  <button onclick="calc()">Estimate Cost</button>
+  <div class="result" id="result"></div>
+</div>
+
+<div class="content">
+  <!-- Section SEO -->
+  <section id="seo-content">
+    <h2>How to Estimate Shipping Costs</h2>
+    <p>
+      Our Shipping Cost Estimator allows e-commerce sellers and logistics managers to quickly calculate the total shipping fees for packages. By entering the base cost, package weight, and rate per kilogram, you can determine an accurate estimate of the shipping cost in seconds.
+    </p>
+
+    <h3>Step-by-Step Instructions</h3>
+    <ul>
+      <li>Enter the base cost for shipping</li>
+      <li>Enter the weight of your package in kilograms</li>
+      <li>Enter the rate per kilogram charged by the carrier</li>
+      <li>Click "Estimate Cost" to see the total shipping fee</li>
+    </ul>
+
+    <h3>Benefits of Using This Calculator</h3>
+    <ul>
+      <li>Quickly estimate shipping fees without manual calculations</li>
+      <li>Plan your logistics budget efficiently</li>
+      <li>Optimize shipping for e-commerce products</li>
+      <li>Free, easy-to-use, and accurate online tool</li>
+    </ul>
+  </section>
+
+  <!-- Call-to-action -->
+  <div class="cta">
+    <h2>Like this tool?</h2>
+    <p>Bookmark this page and come back anytime to estimate your shipping costs instantly.</p>
+  </div>
 </div>
 
 <script>
 function calc(){
-let base=parseFloat(document.getElementById('base').value);
-let weight=parseFloat(document.getElementById('weight').value);
-let rate=parseFloat(document.getElementById('rate').value);
+  let base=parseFloat(document.getElementById('base').value);
+  let weight=parseFloat(document.getElementById('weight').value);
+  let rate=parseFloat(document.getElementById('rate').value);
 
-if(!base||!weight||!rate){
-document.getElementById('result').innerText="Please fill all fields.";
-return;
-}
+  if(!base||!weight||!rate){
+    document.getElementById('result').innerText="Please fill all fields.";
+    return;
+  }
 
-let total=base+(weight*rate);
-
-document.getElementById('result').innerText=
-"Estimated Shipping Cost: $"+total.toFixed(2);
+  let total=base+(weight*rate);
+  document.getElementById('result').innerText=
+    "Estimated Shipping Cost: $"+total.toFixed(2);
 }
 </script>
 
