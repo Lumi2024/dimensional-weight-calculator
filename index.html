@@ -2,64 +2,84 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Shipping Calculators Hub | Dimensional, FBA, Air & Sea Freight</title>
-<meta name="description" content="Free professional shipping calculators: dimensional weight, Amazon FBA profit, air freight, sea freight, shipping cost estimator.">
+<title>Professional Shipping Calculators</title>
+<meta name="description" content="Advanced shipping calculators for logistics professionals and e-commerce sellers.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Base pour tous les liens relatifs -->
 <base href="/dimensional-weight-calculator/">
+<link rel="icon" type="image/png" href="favicon.png">
 
 <style>
-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-  color: white;
-  text-align: center;
-  padding: 60px 20px;
+body{
+  margin:0;
+  font-family:Inter,Arial,sans-serif;
+  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  color:white;
+  text-align:center;
 }
-
-h1 {
-  font-size: 38px;
-  margin-bottom: 20px;
+header{
+  padding:60px 20px 30px;
 }
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-  gap: 20px;
-  max-width: 900px;
-  margin: 40px auto;
+h1{
+  font-size:42px;
+  margin:0;
 }
-
-.card {
-  background: white;
-  color: #222;
-  padding: 30px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
+p{
+  opacity:0.8;
+  margin-top:15px;
 }
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+  max-width:1000px;
+  margin:50px auto;
+  padding:0 20px 60px;
+}
+.card{
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(10px);
+  border-radius:16px;
+  padding:35px 20px;
+  text-decoration:none;
+  color:white;
+  font-weight:600;
+  transition:0.3s;
+  border:1px solid rgba(255,255,255,0.15);
+}
+.card:hover{
+  transform:translateY(-6px);
+  background:rgba(255,255,255,0.15);
+}
+footer{
+  padding:20px;
+  opacity:0.6;
+}
+footer a{
+  color:white;
+  text-decoration:none;
 }
 </style>
 </head>
 <body>
 
-<h1>🚀 Professional Shipping Calculators</h1>
-<p>Free tools for e-commerce sellers & logistics professionals</p>
+<header>
+<h1>🚀 Shipping Calculator Suite</h1>
+<p>Modern tools for logistics & e-commerce professionals</p>
+</header>
 
 <div class="grid">
-  <a href="dimensional-weight/" class="card">Dimensional Weight Calculator</a>
-  <a href="volumetric-weight/" class="card">Volumetric Weight Tool</a>
-  <a href="amazon-fba-calculator/" class="card">Amazon FBA Profit Estimator</a>
-  <a href="air-freight-calculator/" class="card">Air Freight Calculator</a>
-  <a href="sea-freight-calculator/" class="card">Sea Freight Calculator</a>
-  <a href="shipping-cost-estimator/" class="card">Shipping Cost Estimator</a>
+<a href="dimensional-weight/" class="card">Dimensional Weight</a>
+<a href="volumetric-weight/" class="card">Volumetric Weight</a>
+<a href="amazon-fba-calculator/" class="card">Amazon FBA Calculator</a>
+<a href="air-freight-calculator/" class="card">Air Freight</a>
+<a href="sea-freight-calculator/" class="card">Sea Freight</a>
+<a href="shipping-cost-estimator/" class="card">Shipping Cost Estimator</a>
 </div>
+
+<footer>
+<a href="about/">About</a>
+</footer>
 
 </body>
 </html>
