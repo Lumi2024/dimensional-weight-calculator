@@ -3,37 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <title>Amazon FBA Profit Calculator</title>
-<meta name="description" content="Estimate your Amazon FBA profit after product cost, shipping and fees.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="../favicon.png">
 <style>
-body{font-family:Arial;max-width:700px;margin:auto;padding:40px;}
-input,button{width:100%;padding:12px;margin:10px 0;}
-button{background:#ff9900;color:white;border:none;}
-.result{font-weight:bold;margin-top:15px;}
+body{margin:0;font-family:Inter,Arial;background:#0f2027;color:white;display:flex;justify-content:center;align-items:center;height:100vh}
+.card{background:#203a43;padding:40px;border-radius:16px;width:420px;text-align:center}
+input,button{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:none;font-size:16px}
+button{background:#00c6ff;color:black;font-weight:bold;cursor:pointer}
+.result{margin-top:15px;font-size:18px;font-weight:bold}
 </style>
 </head>
 <body>
 
-<h1>Amazon FBA Profit Calculator</h1>
+<div class="card">
+<h2>Amazon FBA Calculator</h2>
 
-<input type="number" id="price" placeholder="Selling price (€)">
-<input type="number" id="cost" placeholder="Product cost (€)">
-<input type="number" id="fees" placeholder="Amazon fees (€)">
-<input type="number" id="shipping" placeholder="Shipping cost (€)">
+<input type="number" id="price" placeholder="Selling Price">
+<input type="number" id="product" placeholder="Product Cost">
+<input type="number" id="shipping" placeholder="Shipping Cost">
+<input type="number" id="feePercent" placeholder="FBA Fee %" value="15">
 
-<button onclick="calc()">Calculate Profit</button>
-
+<button onclick="calc()">Calculate</button>
 <div class="result" id="result"></div>
+
+</div>
 
 <script>
 function calc(){
-let p=parseFloat(price.value),
-c=parseFloat(cost.value),
-f=parseFloat(fees.value),
-s=parseFloat(shipping.value);
-if(!p||!c||!f||!s){result.innerText="Fill all fields";return;}
-let profit=p-c-f-s;
-result.innerText="Estimated profit: €"+profit.toFixed(2);
+let price=parseFloat(document.getElementById('price').value);
+let product=parseFloat(document.getElementById('product').value);
+let shipping=parseFloat(document.getElementById('shipping').value);
+let feePercent=parseFloat(document.getElementById('feePercent').value);
+
+if(!price||!product||!shipping||!feePercent){
+document.getElementById('result').innerText="Fill all fields.";
+return;
+}
+
+let fee=(price*feePercent)/100;
+let profit=price-(product+fee+shipping);
+let margin=(profit/price)*100;
+
+document.getElementById('result').innerText=
+"Profit: €"+profit.toFixed(2)+" | Margin: "+margin.toFixed(1)+"%";
 }
 </script>
 
