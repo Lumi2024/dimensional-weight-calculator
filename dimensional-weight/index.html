@@ -2,49 +2,65 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Dimensional Weight Calculator | FedEx DHL UPS</title>
-<meta name="description" content="Free dimensional weight calculator for FedEx, DHL and UPS. Calculate volumetric weight instantly.">
+<title>Dimensional Weight Calculator | Chargeable Shipping Weight</title>
+<meta name="description" content="Calculate dimensional weight for shipping carriers like FedEx, UPS, DHL and Amazon FBA.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="../favicon.png">
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "Dimensional Weight Calculator",
+ "applicationCategory": "BusinessApplication",
+ "operatingSystem": "All"
+}
+</script>
 
 <style>
-body{font-family:Arial;max-width:700px;margin:auto;padding:40px;}
-input,select,button{width:100%;padding:12px;margin:10px 0;font-size:16px;}
-button{background:#0077cc;color:white;border:none;border-radius:6px;}
-.result{font-size:20px;font-weight:bold;margin-top:15px;}
-nav a{margin-right:15px;}
+body{margin:0;font-family:Inter,Arial;background:#0f2027;color:white;text-align:center;padding:60px 20px}
+.card{background:#203a43;padding:40px;border-radius:16px;max-width:420px;margin:auto}
+input,button{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:none;font-size:16px}
+button{background:#00c6ff;color:black;font-weight:bold;cursor:pointer}
+.result{margin-top:15px;font-size:18px;font-weight:bold}
+.content{max-width:700px;margin:40px auto;opacity:0.8;line-height:1.6}
 </style>
 </head>
-
 <body>
-
-<nav>
-<a href="/">Home</a>
-<a href="/amazon-fba-calculator/">FBA</a>
-</nav>
 
 <h1>Dimensional Weight Calculator</h1>
 
+<div class="card">
 <input type="number" id="l" placeholder="Length (cm)">
 <input type="number" id="w" placeholder="Width (cm)">
 <input type="number" id="h" placeholder="Height (cm)">
-<select id="carrier">
-<option value="5000">FedEx / DHL (5000)</option>
-<option value="6000">UPS (6000)</option>
-</select>
-
+<input type="number" id="weight" placeholder="Actual Weight (kg)">
 <button onclick="calc()">Calculate</button>
-
 <div class="result" id="result"></div>
+</div>
+
+<div class="content">
+<h2>How Dimensional Weight Works</h2>
+<p>Shipping carriers calculate chargeable weight based on package volume. The formula used by most carriers is (L × W × H) / 5000. The higher value between actual weight and volumetric weight is billed.</p>
+</div>
 
 <script>
 function calc(){
-let l=parseFloat(l.value),
-w=parseFloat(w.value),
-h=parseFloat(h.value),
-d=parseFloat(carrier.value);
-if(!l||!w||!h){result.innerText="Fill all fields";return;}
-let dw=(l*w*h)/d;
-result.innerText="Dimensional weight: "+dw.toFixed(2)+" kg";
+let l=parseFloat(document.getElementById('l').value);
+let w=parseFloat(document.getElementById('w').value);
+let h=parseFloat(document.getElementById('h').value);
+let weight=parseFloat(document.getElementById('weight').value);
+
+if(!l||!w||!h||!weight){
+document.getElementById('result').innerText="Fill all fields.";
+return;
+}
+
+let volumetric=(l*w*h)/5000;
+let charge=Math.max(volumetric,weight);
+
+document.getElementById('result').innerText=
+"Volumetric: "+volumetric.toFixed(2)+" kg | Chargeable: "+charge.toFixed(2)+" kg";
 }
 </script>
 
