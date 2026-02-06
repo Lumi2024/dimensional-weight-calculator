@@ -2,236 +2,62 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>Shipping Calculators Hub | Dimensional, FBA, Air & Sea Freight</title>
+<meta name="description" content="Free professional shipping calculators: dimensional weight, Amazon FBA profit, air freight, sea freight, shipping cost estimator.">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amazon FBA Profit & Shipping Calculator</title>
-<meta name="description" content="Advanced Amazon FBA profit calculator with automatic FBA fee %, ROI estimator, break-even price and multi-currency support. Includes shipping modes.">
-<link rel="icon" type="image/png" href="logo.png">
 
 <style>
-body{
-margin:0;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-background:linear-gradient(135deg,#eef2ff,#f8fafc);
-color:#111827;
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
 }
-.container{
-max-width:1100px;
-margin:auto;
-padding:40px 20px;
+
+h1 {
+  font-size: 38px;
+  margin-bottom: 20px;
 }
-h1{
-text-align:center;
-font-size:34px;
-background:linear-gradient(90deg,#2563eb,#7c3aed);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: 40px auto;
 }
-.card{
-background:white;
-padding:30px;
-border-radius:16px;
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
-margin-top:40px;
+
+.card {
+  background: white;
+  color: #222;
+  padding: 30px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
 }
-label{
-display:block;
-margin-top:15px;
-font-weight:600;
-}
-input,select{
-width:100%;
-padding:12px;
-margin-top:6px;
-border-radius:10px;
-border:1px solid #ddd;
-}
-button{
-margin-top:25px;
-padding:14px;
-width:100%;
-border:none;
-border-radius:10px;
-background:linear-gradient(90deg,#2563eb,#7c3aed);
-color:white;
-font-weight:600;
-cursor:pointer;
-}
-.results{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
-margin-top:30px;
-}
-.result-box{
-background:#f9fafb;
-padding:20px;
-border-radius:12px;
-text-align:center;
-box-shadow:0 5px 15px rgba(0,0,0,0.05);
-}
-.big{
-font-size:20px;
-font-weight:bold;
-margin-top:8px;
-}
-footer{
-text-align:center;
-margin-top:60px;
-font-size:14px;
-color:#666;
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 </style>
 </head>
-
 <body>
-<div class="container">
 
-<h1>Amazon FBA Profit & Shipping Calculator</h1>
+<h1>🚀 Professional Shipping Calculators</h1>
+<p>Free tools for e-commerce sellers & logistics professionals</p>
 
-<div class="card">
-<h2>Shipping Calculator</h2>
-
-<label>Mode</label>
-<select id="mode">
-<option value="express">Express</option>
-<option value="air">Air Freight</option>
-<option value="sea">Sea Freight</option>
-</select>
-
-<label>Length (cm)</label>
-<input type="number" id="length">
-
-<label>Width (cm)</label>
-<input type="number" id="width">
-
-<label>Height (cm)</label>
-<input type="number" id="height">
-
-<label>Actual Weight (kg)</label>
-<input type="number" id="actualWeight">
-
-<button onclick="calculateShipping()">Calculate Shipping</button>
-
-<div class="results" id="shippingResults"></div>
+<div class="grid">
+  <a href="/dimensional-weight/" class="card">Dimensional Weight Calculator</a>
+  <a href="/volumetric-weight/" class="card">Volumetric Weight Tool</a>
+  <a href="/amazon-fba-calculator/" class="card">Amazon FBA Profit Estimator</a>
+  <a href="/air-freight-calculator/" class="card">Air Freight Calculator</a>
+  <a href="/sea-freight-calculator/" class="card">Sea Freight Calculator</a>
+  <a href="/shipping-cost-estimator/" class="card">Shipping Cost Estimator</a>
 </div>
-
-<div class="card">
-<h2>Amazon FBA Profit Estimator</h2>
-
-<label>Currency</label>
-<select id="currency">
-<option value="€">Euro (€)</option>
-<option value="$">Dollar ($)</option>
-<option value="£">Pound (£)</option>
-</select>
-
-<label>Selling Price</label>
-<input type="number" id="price">
-
-<label>Product Cost</label>
-<input type="number" id="productCost">
-
-<label>FBA Fee % (default 15%)</label>
-<input type="number" id="feePercent" value="15">
-
-<label>Shipping Cost</label>
-<input type="number" id="shippingCost">
-
-<label>Estimated Monthly Sales (units)</label>
-<input type="number" id="monthlySales">
-
-<button onclick="calculateProfit()">Calculate Profit</button>
-
-<div class="results" id="profitResults"></div>
-</div>
-
-<footer>
-Estimates only. Always verify Amazon and carrier official pricing.
-</footer>
-
-</div>
-
-<script>
-
-function calculateShipping(){
-let mode=document.getElementById("mode").value;
-let l=parseFloat(document.getElementById("length").value);
-let w=parseFloat(document.getElementById("width").value);
-let h=parseFloat(document.getElementById("height").value);
-let actual=parseFloat(document.getElementById("actualWeight").value);
-
-if(!l||!w||!h||!actual){
-document.getElementById("shippingResults").innerHTML="Fill all fields.";
-return;
-}
-
-let volume=(l*w*h)/1000000;
-let dim=(l*w*h)/5000;
-let output="";
-
-if(mode==="express"){
-let billable=Math.max(dim,actual);
-let cost=billable*5.5;
-output=createBox("Billable Weight",billable+" kg")
-+createBox("Estimated Cost","€"+cost.toFixed(2));
-}
-
-if(mode==="air"){
-let billable=Math.max((l*w*h)/6000,actual);
-let cost=billable*4.2;
-output=createBox("Billable Weight",billable+" kg")
-+createBox("Estimated Cost","€"+cost.toFixed(2));
-}
-
-if(mode==="sea"){
-let cost=volume*120;
-output=createBox("Volume",volume.toFixed(3)+" m³")
-+createBox("Estimated Cost","€"+cost.toFixed(2));
-}
-
-document.getElementById("shippingResults").innerHTML=output;
-}
-
-function calculateProfit(){
-
-let currency=document.getElementById("currency").value;
-let price=parseFloat(document.getElementById("price").value);
-let product=parseFloat(document.getElementById("productCost").value);
-let feePercent=parseFloat(document.getElementById("feePercent").value);
-let shipping=parseFloat(document.getElementById("shippingCost").value);
-let monthly=parseFloat(document.getElementById("monthlySales").value);
-
-if(!price||!product||!feePercent||!shipping||!monthly){
-document.getElementById("profitResults").innerHTML="Fill all fields.";
-return;
-}
-
-let fees=(price*feePercent)/100;
-let totalCost=product+fees+shipping;
-let profit=price-totalCost;
-let margin=(profit/price)*100;
-let roi=(profit/product)*100;
-let breakEven=totalCost;
-let monthlyProfit=profit*monthly;
-
-document.getElementById("profitResults").innerHTML=
-createBox("Net Profit / Unit",currency+profit.toFixed(2))+
-createBox("Margin",margin.toFixed(1)+"%")+
-createBox("ROI",roi.toFixed(1)+"%")+
-createBox("Break-even Price",currency+breakEven.toFixed(2))+
-createBox("Monthly Profit",currency+monthlyProfit.toFixed(2));
-}
-
-function createBox(title,value){
-return `
-<div class="result-box">
-<h3>${title}</h3>
-<div class="big">${value}</div>
-</div>
-`;
-}
-
-</script>
 
 </body>
 </html>
