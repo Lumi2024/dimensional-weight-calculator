@@ -2,36 +2,120 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Volumetric Weight Calculator</title>
-<meta name="description" content="Online volumetric weight calculator for logistics and e-commerce shipments.">
+<title>Volumetric Weight Calculator | Online Shipping Tool</title>
+<meta name="description" content="Free online volumetric weight calculator for e-commerce and logistics shipments. Quickly calculate chargeable weight based on package dimensions.">
+<meta name="keywords" content="volumetric weight calculator, dimensional weight, shipping weight, e-commerce shipping, logistics, chargeable weight">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-body{font-family:Arial;max-width:700px;margin:auto;padding:40px;}
-input,button{width:100%;padding:12px;margin:10px 0;}
-button{background:#333;color:white;border:none;}
-.result{font-weight:bold;margin-top:10px;}
+body{
+  font-family:Inter,Arial;
+  max-width:900px;
+  margin:auto;
+  padding:40px;
+  color:#fff;
+  background:linear-gradient(135deg,#141e30,#243b55);
+  line-height:1.6;
+  text-align:center;
+}
+h1{
+  font-size:36px;
+  margin-bottom:20px;
+}
+input,button{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:10px;
+  border:none;
+  font-size:16px;
+}
+button{
+  background:#00c6ff;
+  color:black;
+  font-weight:bold;
+  cursor:pointer;
+}
+.result{
+  font-weight:bold;
+  margin-top:10px;
+  font-size:18px;
+}
+.content{
+  max-width:900px;
+  margin:40px auto;
+  text-align:left;
+  opacity:0.9;
+}
+#seo-content h2,#seo-content h3{
+  margin-top:30px;
+}
+#seo-content ul{
+  margin-left:20px;
+}
+.cta{
+  text-align:center;
+  margin-top:40px;
+}
 </style>
 </head>
 <body>
 
 <h1>Volumetric Weight Calculator</h1>
 
-<input type="number" id="l" placeholder="Length (cm)">
-<input type="number" id="w" placeholder="Width (cm)">
-<input type="number" id="h" placeholder="Height (cm)">
+<div>
+  <input type="number" id="l" placeholder="Length (cm)">
+  <input type="number" id="w" placeholder="Width (cm)">
+  <input type="number" id="h" placeholder="Height (cm)">
+  <button onclick="calc()">Calculate</button>
+  <div id="result" class="result"></div>
+</div>
 
-<button onclick="calc()">Calculate</button>
+<div class="content">
+  <!-- Section SEO -->
+  <section id="seo-content">
+    <h2>What is Volumetric Weight?</h2>
+    <p>
+      Volumetric weight (or dimensional weight) is used by carriers to calculate shipping costs based on the space a package occupies rather than its actual weight. This is especially important for light but large packages, as shipping fees are often charged based on the higher of actual weight or volumetric weight.
+    </p>
 
-<div id="result" class="result"></div>
+    <h3>Step-by-Step Instructions</h3>
+    <ul>
+      <li>Measure the length, width, and height of your package in centimeters</li>
+      <li>Enter these dimensions into the calculator</li>
+      <li>Click "Calculate" to see the volumetric weight</li>
+      <li>Use this value to compare with actual weight for shipping cost purposes</li>
+    </ul>
+
+    <h3>Benefits of Using This Calculator</h3>
+    <ul>
+      <li>Accurate shipping cost estimation for logistics and e-commerce</li>
+      <li>Helps avoid overcharged shipping fees</li>
+      <li>Quick, free, and easy-to-use online tool</li>
+      <li>Ideal for freight forwarders, warehouse managers, and online sellers</li>
+    </ul>
+  </section>
+
+  <!-- Call-to-action -->
+  <div class="cta">
+    <h2>Like this tool?</h2>
+    <p>Bookmark this page and come back anytime to calculate volumetric weight for your shipments.</p>
+  </div>
+</div>
 
 <script>
 function calc(){
-let l=parseFloat(l.value),
-w=parseFloat(w.value),
-h=parseFloat(h.value);
-if(!l||!w||!h){result.innerText="Fill all fields";return;}
-let vol=(l*w*h)/5000;
-result.innerText="Volumetric weight: "+vol.toFixed(2)+" kg";
+  let l=parseFloat(document.getElementById('l').value);
+  let w=parseFloat(document.getElementById('w').value);
+  let h=parseFloat(document.getElementById('h').value);
+
+  if(!l||!w||!h){
+    document.getElementById('result').innerText="Please fill all fields.";
+    return;
+  }
+
+  let vol=(l*w*h)/5000;
+  document.getElementById('result').innerText="Volumetric weight: "+vol.toFixed(2)+" kg";
 }
 </script>
 
