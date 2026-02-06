@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sea Freight Volume Calculator</title>
+<meta name="description" content="Calculate cubic meters (CBM) for sea freight shipments.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{font-family:Arial;max-width:700px;margin:auto;padding:40px;}
+input,button{width:100%;padding:12px;margin:10px 0;}
+button{background:#004466;color:white;border:none;}
+.result{font-weight:bold;}
+</style>
+</head>
+<body>
+
+<h1>Sea Freight CBM Calculator</h1>
+
+<input type="number" id="l" placeholder="Length (cm)">
+<input type="number" id="w" placeholder="Width (cm)">
+<input type="number" id="h" placeholder="Height (cm)">
+
+<button onclick="calc()">Calculate CBM</button>
+
+<div class="result" id="result"></div>
+
+<script>
+function calc(){
+let l=parseFloat(l.value)/100,
+w=parseFloat(w.value)/100,
+h=parseFloat(h.value)/100;
+if(!l||!w||!h){result.innerText="Fill all fields";return;}
+let cbm=l*w*h;
+result.innerText="Volume: "+cbm.toFixed(3)+" m³";
+}
+</script>
+
+</body>
+</html>
