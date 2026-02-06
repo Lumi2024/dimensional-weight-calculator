@@ -2,64 +2,109 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Dimensional Weight Calculator</title>
-<meta name="description" content="Calculate dimensional weight using standard carrier divisor 5000.">
+<title>Sea Freight CBM Calculator</title>
+<meta name="description" content="Calculate CBM (Cubic Meter) for sea freight shipments.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="../favicon.png">
 
-<script type="application/ld+json">
-{
- "@context":"https://schema.org",
- "@type":"WebApplication",
- "name":"Dimensional Weight Calculator",
- "applicationCategory":"BusinessApplication"
-}
-</script>
-
 <style>
-body{margin:0;font-family:Inter,Arial;background:#0f2027;color:white;text-align:center;padding:60px 20px}
-.card{background:#203a43;padding:40px;border-radius:18px;max-width:420px;margin:auto}
-input,button{width:100%;padding:12px;margin:12px 0;border-radius:10px;border:none;font-size:16px}
-button{background:#00c6ff;color:black;font-weight:bold;cursor:pointer}
-.result{margin-top:20px;font-size:18px;font-weight:bold}
-.content{max-width:800px;margin:60px auto;opacity:0.85;line-height:1.7}
+body{
+  margin:0;
+  font-family:Inter,Arial;
+  background:#0f2027;
+  color:white;
+  text-align:center;
+  padding:60px 20px;
+}
+
+h1{
+  font-size:38px;
+  margin-bottom:30px;
+}
+
+.card{
+  background:#203a43;
+  padding:40px;
+  border-radius:18px;
+  max-width:450px;
+  margin:auto;
+}
+
+input,button{
+  width:100%;
+  padding:12px;
+  margin:12px 0;
+  border-radius:10px;
+  border:none;
+  font-size:16px;
+}
+
+button{
+  background:#00c6ff;
+  color:black;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover{
+  opacity:0.9;
+}
+
+.result{
+  margin-top:20px;
+  font-size:20px;
+  font-weight:bold;
+}
+
+.content{
+  max-width:800px;
+  margin:60px auto;
+  opacity:0.85;
+  line-height:1.7;
+}
 </style>
 </head>
 <body>
 
-<h1>Dimensional Weight Calculator</h1>
+<h1>Sea Freight CBM Calculator</h1>
 
 <div class="card">
 <input type="number" id="l" placeholder="Length (cm)">
 <input type="number" id="w" placeholder="Width (cm)">
 <input type="number" id="h" placeholder="Height (cm)">
-<input type="number" id="weight" placeholder="Actual Weight (kg)">
-<button onclick="calc()">Calculate</button>
+<button onclick="calc()">Calculate CBM</button>
 <div class="result" id="result"></div>
 </div>
 
 <div class="content">
-<h2>How It Works</h2>
-<p>Dimensional weight is calculated using the formula (Length × Width × Height) ÷ 5000. Carriers charge the higher value between actual and volumetric weight.</p>
+<h2>How CBM is Calculated</h2>
+<p>
+CBM (Cubic Meter) is calculated using the formula:
+<br><br>
+<strong>(Length × Width × Height) ÷ 1,000,000</strong>
+<br><br>
+This converts cubic centimeters into cubic meters for sea freight calculations.
+</p>
 </div>
 
 <script>
 function calc(){
+
 let l=parseFloat(document.getElementById('l').value);
 let w=parseFloat(document.getElementById('w').value);
 let h=parseFloat(document.getElementById('h').value);
-let weight=parseFloat(document.getElementById('weight').value);
 
-if(!l||!w||!h||!weight){
-document.getElementById('result').innerText="Fill all fields.";
-return;
+if(!l || !w || !h){
+  document.getElementById('result').innerText="Please fill all fields.";
+  return;
 }
 
 let cbm=(l*w*h)/1000000;
-let charge=Math.max(volumetric,weight);
 
+/* 🔥 C'EST ICI QUE LE TEXTE S'AFFICHE */
 document.getElementById('result').innerText=
-"Volumetric: "+volumetric.toFixed(2)+" kg | Chargeable: "+charge.toFixed(2)+" kg";
+"Volume: " + cbm.toFixed(3) + " m³";
+
 }
 </script>
 
