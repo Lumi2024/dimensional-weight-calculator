@@ -2,15 +2,68 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Amazon FBA Profit Calculator</title>
+<title>Amazon FBA Profit Calculator | Estimate Your FBA Profit</title>
+<meta name="description" content="Free Amazon FBA profit calculator. Estimate your net profit after Amazon fees, shipping, and product cost. Perfect for e-commerce sellers.">
+<meta name="keywords" content="Amazon FBA calculator, FBA profit calculator, Amazon fees, e-commerce profit, shipping cost calculator">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="../favicon.png">
+
 <style>
-body{margin:0;font-family:Inter,Arial;background:linear-gradient(135deg,#141e30,#243b55);color:white;padding:60px 20px;text-align:center;}
-.card{background:rgba(255,255,255,0.08);padding:40px;border-radius:20px;max-width:450px;margin:auto;}
-input,button{width:100%;padding:12px;margin:12px 0;border-radius:10px;border:none;}
-button{background:#00c6ff;color:black;font-weight:bold;}
-.result{margin-top:20px;font-size:20px;font-weight:bold;}
+body{
+  margin:0;
+  font-family:Inter,Arial;
+  background:linear-gradient(135deg,#141e30,#243b55);
+  color:white;
+  padding:60px 20px;
+  text-align:center;
+  line-height:1.6;
+}
+h1{
+  font-size:38px;
+  margin-bottom:20px;
+}
+.card{
+  background:rgba(255,255,255,0.08);
+  padding:40px;
+  border-radius:20px;
+  max-width:450px;
+  margin:auto;
+}
+input,button{
+  width:100%;
+  padding:12px;
+  margin:12px 0;
+  border-radius:10px;
+  border:none;
+  font-size:16px;
+}
+button{
+  background:#00c6ff;
+  color:black;
+  font-weight:bold;
+  cursor:pointer;
+}
+.result{
+  margin-top:20px;
+  font-size:20px;
+  font-weight:bold;
+}
+.content{
+  max-width:900px;
+  margin:60px auto;
+  text-align:left;
+  opacity:0.9;
+}
+#seo-content h2, #seo-content h3 {
+  margin-top:30px;
+}
+#seo-content ul {
+  margin-left:20px;
+}
+.cta{
+  text-align:center;
+  margin-top:40px;
+}
 </style>
 </head>
 <body>
@@ -18,31 +71,64 @@ button{background:#00c6ff;color:black;font-weight:bold;}
 <h1>Amazon FBA Profit Calculator</h1>
 
 <div class="card">
-<input type="number" id="price" placeholder="Selling Price ($)">
-<input type="number" id="product" placeholder="Product Cost ($)">
-<input type="number" id="shipping" placeholder="Shipping Cost ($)">
-<input type="number" id="feePercent" placeholder="Amazon Fee (%)">
-<button onclick="calc()">Calculate Profit</button>
-<div class="result" id="result"></div>
+  <input type="number" id="price" placeholder="Selling Price ($)">
+  <input type="number" id="product" placeholder="Product Cost ($)">
+  <input type="number" id="shipping" placeholder="Shipping Cost ($)">
+  <input type="number" id="feePercent" placeholder="Amazon Fee (%)">
+  <button onclick="calc()">Calculate Profit</button>
+  <div class="result" id="result"></div>
+</div>
+
+<div class="content">
+  <!-- Section SEO -->
+  <section id="seo-content">
+    <h2>How to Calculate Your FBA Profit</h2>
+    <p>
+      This Amazon FBA Profit Calculator helps e-commerce sellers quickly estimate net profit after deducting product costs, shipping, and Amazon fees. Simply input the selling price, product cost, shipping cost, and Amazon fee percentage to get your estimated profit in seconds.
+    </p>
+
+    <h3>Step-by-Step Instructions</h3>
+    <ul>
+      <li>Enter the selling price of your product on Amazon</li>
+      <li>Enter your cost to acquire the product</li>
+      <li>Enter the shipping cost to Amazon warehouse or directly to customer</li>
+      <li>Enter the Amazon fee percentage applicable to your category</li>
+      <li>Click "Calculate Profit" to see Amazon fee and estimated net profit</li>
+    </ul>
+
+    <h3>Benefits of Using This Calculator</h3>
+    <ul>
+      <li>Quickly determine if a product is profitable</li>
+      <li>Plan your pricing strategy effectively</li>
+      <li>Avoid surprises from Amazon fees or shipping costs</li>
+      <li>Free and easy-to-use online tool for all sellers</li>
+    </ul>
+  </section>
+
+  <!-- Call-to-action -->
+  <div class="cta">
+    <h2>Like this tool?</h2>
+    <p>Bookmark this page and come back anytime to calculate FBA profits instantly.</p>
+  </div>
 </div>
 
 <script>
 function calc(){
-let price=parseFloat(document.getElementById('price').value);
-let product=parseFloat(document.getElementById('product').value);
-let shipping=parseFloat(document.getElementById('shipping').value);
-let feePercent=parseFloat(document.getElementById('feePercent').value);
+  let price=parseFloat(document.getElementById('price').value);
+  let product=parseFloat(document.getElementById('product').value);
+  let shipping=parseFloat(document.getElementById('shipping').value);
+  let feePercent=parseFloat(document.getElementById('feePercent').value);
 
-if(!price||!product||!shipping||!feePercent){
-document.getElementById('result').innerText="Please fill all fields.";
-return;
-}
+  if(!price||!product||!shipping||!feePercent){
+    document.getElementById('result').innerText="Please fill all fields.";
+    return;
+  }
 
-let fee=(price*feePercent)/100;
-let profit=price-(product+shipping+fee);
+  let fee=(price*feePercent)/100;
+  let profit=price-(product+shipping+fee);
 
-document.getElementById('result').innerText=
-"Amazon Fee: $"+fee.toFixed(2)+" | Estimated Profit: $"+profit.toFixed(2);
+  document.getElementById('result').innerText=
+    "Amazon Fee: $"+fee.toFixed(2)+" | Estimated Profit: $"+profit.toFixed(2);
 }
 </script>
 
