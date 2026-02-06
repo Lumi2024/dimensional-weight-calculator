@@ -3,65 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Amazon FBA Profit Calculator</title>
-<meta name="description" content="Calculate Amazon FBA profit after product cost, shipping cost and Amazon fees.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="../favicon.png">
-
 <style>
-body{
-  margin:0;
-  font-family:Inter,Arial;
-  background:#0f2027;
-  color:white;
-  text-align:center;
-  padding:60px 20px;
-}
-
-h1{
-  font-size:38px;
-  margin-bottom:30px;
-}
-
-.card{
-  background:#203a43;
-  padding:40px;
-  border-radius:18px;
-  max-width:450px;
-  margin:auto;
-}
-
-input,button{
-  width:100%;
-  padding:12px;
-  margin:12px 0;
-  border-radius:10px;
-  border:none;
-  font-size:16px;
-}
-
-button{
-  background:#00c6ff;
-  color:black;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-button:hover{
-  opacity:0.9;
-}
-
-.result{
-  margin-top:20px;
-  font-size:20px;
-  font-weight:bold;
-}
-
-.content{
-  max-width:800px;
-  margin:60px auto;
-  opacity:0.85;
-  line-height:1.7;
-}
+body{margin:0;font-family:Inter,Arial;background:linear-gradient(135deg,#141e30,#243b55);color:white;padding:60px 20px;text-align:center;}
+.card{background:rgba(255,255,255,0.08);padding:40px;border-radius:20px;max-width:450px;margin:auto;}
+input,button{width:100%;padding:12px;margin:12px 0;border-radius:10px;border:none;}
+button{background:#00c6ff;color:black;font-weight:bold;}
+.result{margin-top:20px;font-size:20px;font-weight:bold;}
 </style>
 </head>
 <body>
@@ -77,35 +26,23 @@ button:hover{
 <div class="result" id="result"></div>
 </div>
 
-<div class="content">
-<h2>How It Works</h2>
-<p>
-Amazon charges a referral fee based on a percentage of the selling price.
-<br><br>
-Profit = Selling Price − (Product Cost + Shipping Cost + Amazon Fee)
-</p>
-</div>
-
 <script>
 function calc(){
-
 let price=parseFloat(document.getElementById('price').value);
 let product=parseFloat(document.getElementById('product').value);
 let shipping=parseFloat(document.getElementById('shipping').value);
 let feePercent=parseFloat(document.getElementById('feePercent').value);
 
-if(!price || !product || !shipping || !feePercent){
-  document.getElementById('result').innerText="Please fill all fields.";
-  return;
+if(!price||!product||!shipping||!feePercent){
+document.getElementById('result').innerText="Please fill all fields.";
+return;
 }
 
 let fee=(price*feePercent)/100;
 let profit=price-(product+shipping+fee);
 
 document.getElementById('result').innerText=
-"Amazon Fee: $" + fee.toFixed(2) +
-" | Estimated Profit: $" + profit.toFixed(2);
-
+"Amazon Fee: $"+fee.toFixed(2)+" | Estimated Profit: $"+profit.toFixed(2);
 }
 </script>
 
