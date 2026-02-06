@@ -1,34 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Shipping Cost Estimator</title>
-<meta name="description" content="Estimate shipping cost based on chargeable weight and rate per kg.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="../favicon.png">
 <style>
-body{font-family:Arial;max-width:700px;margin:auto;padding:40px;}
-input,button{width:100%;padding:12px;margin:10px 0;}
-button{background:#222;color:white;border:none;}
-.result{font-weight:bold;}
+body{margin:0;font-family:Inter,Arial;background:#0f2027;color:white;display:flex;justify-content:center;align-items:center;height:100vh}
+.card{background:#203a43;padding:40px;border-radius:16px;width:420px;text-align:center}
+input,button{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:none;font-size:16px}
+button{background:#00c6ff;color:black;font-weight:bold;cursor:pointer}
+.result{margin-top:15px;font-size:18px;font-weight:bold}
 </style>
 </head>
 <body>
 
-<h1>Shipping Cost Estimator</h1>
+<div class="card">
+<h2>Shipping Cost Estimator</h2>
 
-<input type="number" id="weight" placeholder="Chargeable weight (kg)">
-<input type="number" id="rate" placeholder="Rate per kg (€)">
+<input type="number" id="base" placeholder="Base Cost (€)">
+<input type="number" id="weight" placeholder="Weight (kg)">
+<input type="number" id="rate" placeholder="Cost per kg (€)">
 
-<button onclick="calc()">Estimate</button>
-
+<button onclick="calc()">Calculate</button>
 <div class="result" id="result"></div>
+
+</div>
 
 <script>
 function calc(){
-let w=parseFloat(weight.value),
-r=parseFloat(rate.value);
-if(!w||!r){result.innerText="Fill all fields";return;}
-result.innerText="Estimated cost: €"+(w*r).toFixed(2);
+let base=parseFloat(document.getElementById('base').value);
+let weight=parseFloat(document.getElementById('weight').value);
+let rate=parseFloat(document.getElementById('rate').value);
+
+if(!base||!weight||!rate){
+document.getElementById('result').innerText="Fill all fields.";
+return;
+}
+
+let total=base+(weight*rate);
+
+document.getElementById('result').innerText=
+"Estimated Shipping Cost: €"+total.toFixed(2);
 }
 </script>
 
