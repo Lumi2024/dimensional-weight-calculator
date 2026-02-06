@@ -2,84 +2,43 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Professional Shipping Calculators</title>
-<meta name="description" content="Advanced shipping calculators for logistics professionals and e-commerce sellers.">
+<title>Dimensional Weight Calculator</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<base href="/dimensional-weight-calculator/">
-<link rel="icon" type="image/png" href="favicon.png">
-
+<link rel="icon" type="image/png" href="../favicon.png">
 <style>
-body{
-  margin:0;
-  font-family:Inter,Arial,sans-serif;
-  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-  color:white;
-  text-align:center;
-}
-header{
-  padding:60px 20px 30px;
-}
-h1{
-  font-size:42px;
-  margin:0;
-}
-p{
-  opacity:0.8;
-  margin-top:15px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:25px;
-  max-width:1000px;
-  margin:50px auto;
-  padding:0 20px 60px;
-}
-.card{
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(10px);
-  border-radius:16px;
-  padding:35px 20px;
-  text-decoration:none;
-  color:white;
-  font-weight:600;
-  transition:0.3s;
-  border:1px solid rgba(255,255,255,0.15);
-}
-.card:hover{
-  transform:translateY(-6px);
-  background:rgba(255,255,255,0.15);
-}
-footer{
-  padding:20px;
-  opacity:0.6;
-}
-footer a{
-  color:white;
-  text-decoration:none;
-}
+body{margin:0;font-family:Inter,Arial;background:#0f2027;color:white;display:flex;justify-content:center;align-items:center;height:100vh}
+.card{background:#203a43;padding:40px;border-radius:16px;width:400px;text-align:center}
+input,button{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:none;font-size:16px}
+button{background:#00c6ff;color:black;font-weight:bold;cursor:pointer}
+.result{margin-top:15px;font-size:18px;font-weight:bold}
 </style>
 </head>
 <body>
 
-<header>
-<h1>🚀 Shipping Calculator Suite</h1>
-<p>Modern tools for logistics & e-commerce professionals</p>
-</header>
+<div class="card">
+<h2>Dimensional Weight</h2>
 
-<div class="grid">
-<a href="dimensional-weight/" class="card">Dimensional Weight</a>
-<a href="volumetric-weight/" class="card">Volumetric Weight</a>
-<a href="amazon-fba-calculator/" class="card">Amazon FBA Calculator</a>
-<a href="air-freight-calculator/" class="card">Air Freight</a>
-<a href="sea-freight-calculator/" class="card">Sea Freight</a>
-<a href="shipping-cost-estimator/" class="card">Shipping Cost Estimator</a>
+<input type="number" id="l" placeholder="Length (cm)">
+<input type="number" id="w" placeholder="Width (cm)">
+<input type="number" id="h" placeholder="Height (cm)">
+<input type="number" id="weight" placeholder="Actual Weight (kg)">
+
+<button onclick="calc()">Calculate</button>
+<div class="result" id="result"></div>
+
 </div>
 
-<footer>
-<a href="about/">About</a>
-</footer>
+<script>
+function calc(){
+let l=l=document.getElementById('l').value;
+let w=document.getElementById('w').value;
+let h=document.getElementById('h').value;
+let weight=document.getElementById('weight').value;
+let vol=(l*w*h)/5000;
+let charge=Math.max(vol,weight);
+document.getElementById('result').innerText="Chargeable: "+charge.toFixed(2)+" kg";
+}
+</script>
 
 </body>
 </html>
