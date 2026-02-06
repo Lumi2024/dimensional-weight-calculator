@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Amazon FBA Profit Calculator</title>
+<meta name="description" content="Estimate your Amazon FBA profit after product cost, shipping and fees.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{font-family:Arial;max-width:700px;margin:auto;padding:40px;}
+input,button{width:100%;padding:12px;margin:10px 0;}
+button{background:#ff9900;color:white;border:none;}
+.result{font-weight:bold;margin-top:15px;}
+</style>
+</head>
+<body>
+
+<h1>Amazon FBA Profit Calculator</h1>
+
+<input type="number" id="price" placeholder="Selling price (€)">
+<input type="number" id="cost" placeholder="Product cost (€)">
+<input type="number" id="fees" placeholder="Amazon fees (€)">
+<input type="number" id="shipping" placeholder="Shipping cost (€)">
+
+<button onclick="calc()">Calculate Profit</button>
+
+<div class="result" id="result"></div>
+
+<script>
+function calc(){
+let p=parseFloat(price.value),
+c=parseFloat(cost.value),
+f=parseFloat(fees.value),
+s=parseFloat(shipping.value);
+if(!p||!c||!f||!s){result.innerText="Fill all fields";return;}
+let profit=p-c-f-s;
+result.innerText="Estimated profit: €"+profit.toFixed(2);
+}
+</script>
+
+</body>
+</html>
