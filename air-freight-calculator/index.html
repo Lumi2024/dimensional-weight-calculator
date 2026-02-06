@@ -2,32 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Dimensional Weight Calculator</title>
-<meta name="description" content="Calculate dimensional weight using standard carrier divisor 5000.">
+<title>Air Freight Calculator | Volumetric Weight 6000</title>
+<meta name="description" content="Air freight chargeable weight calculator using 6000 divisor formula.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="../favicon.png">
-
-<script type="application/ld+json">
-{
- "@context":"https://schema.org",
- "@type":"WebApplication",
- "name":"Dimensional Weight Calculator",
- "applicationCategory":"BusinessApplication"
-}
-</script>
-
 <style>
-body{margin:0;font-family:Inter,Arial;background:#0f2027;color:white;text-align:center;padding:60px 20px}
-.card{background:#203a43;padding:40px;border-radius:18px;max-width:420px;margin:auto}
-input,button{width:100%;padding:12px;margin:12px 0;border-radius:10px;border:none;font-size:16px}
-button{background:#00c6ff;color:black;font-weight:bold;cursor:pointer}
-.result{margin-top:20px;font-size:18px;font-weight:bold}
-.content{max-width:800px;margin:60px auto;opacity:0.85;line-height:1.7}
+body{margin:0;font-family:Inter,Arial;background:linear-gradient(135deg,#141e30,#243b55);color:white;padding:60px 20px;text-align:center;}
+.card{background:rgba(255,255,255,0.08);padding:40px;border-radius:20px;max-width:450px;margin:auto;}
+input,button{width:100%;padding:12px;margin:12px 0;border-radius:10px;border:none;}
+button{background:#00c6ff;color:black;font-weight:bold;}
+.result{margin-top:20px;font-size:20px;font-weight:bold;}
 </style>
 </head>
 <body>
 
-<h1>Dimensional Weight Calculator</h1>
+<h1>Air Freight Calculator</h1>
 
 <div class="card">
 <input type="number" id="l" placeholder="Length (cm)">
@@ -38,11 +27,6 @@ button{background:#00c6ff;color:black;font-weight:bold;cursor:pointer}
 <div class="result" id="result"></div>
 </div>
 
-<div class="content">
-<h2>How It Works</h2>
-<p>Dimensional weight is calculated using the formula (Length × Width × Height) ÷ 5000. Carriers charge the higher value between actual and volumetric weight.</p>
-</div>
-
 <script>
 function calc(){
 let l=parseFloat(document.getElementById('l').value);
@@ -51,7 +35,7 @@ let h=parseFloat(document.getElementById('h').value);
 let weight=parseFloat(document.getElementById('weight').value);
 
 if(!l||!w||!h||!weight){
-document.getElementById('result').innerText="Fill all fields.";
+document.getElementById('result').innerText="Please fill all fields.";
 return;
 }
 
@@ -59,7 +43,7 @@ let volumetric=(l*w*h)/6000;
 let charge=Math.max(volumetric,weight);
 
 document.getElementById('result').innerText=
-"Volumetric: "+volumetric.toFixed(2)+" kg | Chargeable: "+charge.toFixed(2)+" kg";
+"Air Volumetric: "+volumetric.toFixed(2)+" kg | Chargeable: "+charge.toFixed(2)+" kg";
 }
 </script>
 
