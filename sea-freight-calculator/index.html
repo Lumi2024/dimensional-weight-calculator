@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Sea Freight CBM Calculator</title>
-<meta name="description" content="Calculate CBM (Cubic Meter) for sea freight shipments.">
+<title>Sea Freight CBM Calculator | Cubic Meter Volume</title>
+<meta name="description" content="Free Sea Freight CBM Calculator. Calculate Cubic Meters for shipping containers and sea freight cargo. Optimize your shipment planning.">
+<meta name="keywords" content="sea freight calculator, CBM calculator, cubic meter, shipping volume, logistics, container volume">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="../favicon.png">
 
@@ -15,13 +16,12 @@ body{
   color:white;
   text-align:center;
   padding:60px 20px;
+  line-height:1.6;
 }
-
 h1{
   font-size:38px;
   margin-bottom:30px;
 }
-
 .card{
   background:#203a43;
   padding:40px;
@@ -29,7 +29,6 @@ h1{
   max-width:450px;
   margin:auto;
 }
-
 input,button{
   width:100%;
   padding:12px;
@@ -38,29 +37,35 @@ input,button{
   border:none;
   font-size:16px;
 }
-
 button{
   background:#00c6ff;
   color:black;
   font-weight:bold;
   cursor:pointer;
 }
-
 button:hover{
   opacity:0.9;
 }
-
 .result{
   margin-top:20px;
   font-size:20px;
   font-weight:bold;
 }
-
 .content{
-  max-width:800px;
+  max-width:900px;
   margin:60px auto;
-  opacity:0.85;
-  line-height:1.7;
+  opacity:0.9;
+  text-align:left;
+}
+#seo-content h2, #seo-content h3 {
+  margin-top:30px;
+}
+#seo-content ul {
+  margin-left:20px;
+}
+.cta{
+  text-align:center;
+  margin-top:40px;
 }
 </style>
 </head>
@@ -69,42 +74,59 @@ button:hover{
 <h1>Sea Freight CBM Calculator</h1>
 
 <div class="card">
-<input type="number" id="l" placeholder="Length (cm)">
-<input type="number" id="w" placeholder="Width (cm)">
-<input type="number" id="h" placeholder="Height (cm)">
-<button onclick="calc()">Calculate CBM</button>
-<div class="result" id="result"></div>
+  <input type="number" id="l" placeholder="Length (cm)">
+  <input type="number" id="w" placeholder="Width (cm)">
+  <input type="number" id="h" placeholder="Height (cm)">
+  <button onclick="calc()">Calculate CBM</button>
+  <div class="result" id="result"></div>
 </div>
 
 <div class="content">
-<h2>How CBM is Calculated</h2>
-<p>
-CBM (Cubic Meter) is calculated using the formula:
-<br><br>
-<strong>(Length × Width × Height) ÷ 1,000,000</strong>
-<br><br>
-This converts cubic centimeters into cubic meters for sea freight calculations.
-</p>
+  <!-- Section SEO -->
+  <section id="seo-content">
+    <h2>What is CBM in Sea Freight?</h2>
+    <p>
+      CBM (Cubic Meter) is a standard measurement used in sea freight to calculate the volume of your cargo. Shipping companies charge based on the container space your goods occupy, not just weight. Using this CBM Calculator, you can accurately determine the space needed for your shipment and plan efficiently.
+    </p>
+
+    <h3>Step-by-Step Instructions</h3>
+    <ul>
+      <li>Measure the length, width, and height of your cargo in centimeters</li>
+      <li>Enter the dimensions into the calculator</li>
+      <li>Click "Calculate CBM" to get the volume in cubic meters</li>
+      <li>Use this information to select the right container size and optimize shipping costs</li>
+    </ul>
+
+    <h3>Benefits of Using This Calculator</h3>
+    <ul>
+      <li>Accurate volume measurement for sea freight planning</li>
+      <li>Helps reduce shipping costs by optimizing container space</li>
+      <li>Quick, free, and easy-to-use online tool</li>
+      <li>Ideal for e-commerce, logistics managers, and freight forwarders</li>
+    </ul>
+  </section>
+
+  <!-- Call-to-action -->
+  <div class="cta">
+    <h2>Like this tool?</h2>
+    <p>Bookmark this page and return anytime to calculate CBM for your sea freight shipments.</p>
+  </div>
 </div>
 
 <script>
 function calc(){
+  let l=parseFloat(document.getElementById('l').value);
+  let w=parseFloat(document.getElementById('w').value);
+  let h=parseFloat(document.getElementById('h').value);
 
-let l=parseFloat(document.getElementById('l').value);
-let w=parseFloat(document.getElementById('w').value);
-let h=parseFloat(document.getElementById('h').value);
+  if(!l || !w || !h){
+    document.getElementById('result').innerText="Please fill all fields.";
+    return;
+  }
 
-if(!l || !w || !h){
-  document.getElementById('result').innerText="Please fill all fields.";
-  return;
-}
-
-let cbm=(l*w*h)/1000000;
-
-/* 🔥 C'EST ICI QUE LE TEXTE S'AFFICHE */
-document.getElementById('result').innerText=
-"Volume: " + cbm.toFixed(3) + " m³";
-
+  let cbm=(l*w*h)/1000000;
+  document.getElementById('result').innerText=
+    "Volume: " + cbm.toFixed(3) + " m³";
 }
 </script>
 
